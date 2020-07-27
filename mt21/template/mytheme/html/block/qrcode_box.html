@@ -1,0 +1,15 @@
+<div class="dropdown-box bottom fadeInDown clearfix">
+	<div class="item text-center" style="padding: 15px 10px;">
+		{if $mytheme.qrcode.img}
+		<div class="qrcode-box">
+			<img class="img-responsive" src="{$mytheme.qrcode.img}" />
+		</div>
+		{else}
+		<div class="qrcode-box" style="background-color: {$mytheme.qrcode.light};">
+			<img class="icon" src="{$mytheme.site.ico}" width="25" height="25" />
+			<span id="qrcode" data-link="0" data-dark="{$mytheme.qrcode.dark}" data-light="{$mytheme.qrcode.light}"></span>
+		</div>
+		{/if}
+		<p class="margin-0">{$mytheme.qrcode.text}</p>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+{if $mytheme.home_list.is}
+{maccms:foreach name=":explode(',',''.$mytheme['home_list']['id'].'')" id="vo" key="key"}
+{maccms:type order="asc" by="sort" ids="'.$vo.'" id="vo1" key="key1" flag="vod"}
+<div class="myui-panel myui-panel-bg clearfix">
+	<div class="myui-panel-box clearfix">		
+		<div class="myui-panel_bd clearfix">
+			<div class="{if $mytheme.home_list.right}col-lg-wide-75 col-md-wide-75{/if} col-xs-1 padding-0">		
+				<div class="myui-panel_hd">
+					<div class="myui-panel__head clearfix">				
+						<h3 class="title">
+							{$mytheme.home_list.title}{$vo1.type_name}
+						</h3>	
+						<a class="more text-muted" href="{:mac_url_type($vo1)}">更多 <i class="fa fa-angle-right"></i></a>
+					</div>																			
+				</div>	
+				<ul class="myui-vodlist clearfix">
+					{maccms:vod num="'.$mytheme['home_list']['num'].'" type="'.$vo1['type_id'].'" order="desc" by="'.$mytheme['home_list']['by'].'" year="'.$mytheme['home_list']['year'].'" area="'.$mytheme['home_list']['area'].'"}
+					<li class="col-lg-{$mytheme['home_list']['col']} col-md-{$mytheme.col.md} col-sm-{$mytheme.col.sm} col-xs-{$mytheme.col.xs}{if condition="$key gt $mytheme.home_list.xs"} hidden-xs{/if}{if condition="$key gt $mytheme.home_list.sm"} hidden-sm{/if}">
+						{include file="block/vod_box"}								
+					</li>
+					{/maccms:vod} 
+				</ul>															
+			</div>
+			{if $mytheme.home_list.right}
+			<div class="col-lg-wide-25 col-md-wide-25 hidden-sm hidden-xs">
+				<div class="myui-panel_hd">
+					<div class="myui-panel__head clearfix">				
+						<h3 class="title">
+							{$mytheme.home_list.r_title}{$vo1.type_name}
+						</h3>
+						<a class="more text-muted" href="{:mac_url_type($vo1.type_id,['id'=>$vo1['type_id'],'by'=>'hits'],'show')}">更多  <i class="fa fa-angle-right"></i></a>
+					</div>																			
+				</div>
+				<ul class="myui-vodlist__text active clearfix" style="padding: 0 10px;">
+					{maccms:vod num="'.$mytheme['home_list']['r_num'].'" type="'.$vo1['type_id'].'" order="desc" by="'.$mytheme['home_list']['r_by'].'"}
+					{include file="block/vod_box_rank"}
+					{/maccms:vod}
+				</ul>		
+			</div>
+			{/if}
+		</div>						
+	</div>
+</div>
+{/maccms:type}
+{/maccms:foreach}
+{if $mytheme.home.ad && $mytheme.home.ad2}
+<div class="myui-panel myui-panel-bg clearfix">
+	<div class="myui-panel-box clearfix">
+		<div class="myui-panel_bd">
+			<div class="col-xs-1">
+				{$mytheme.home.ad2}
+			</div>
+		</div>
+	</div>				
+</div>
+{/if}
+{/if}

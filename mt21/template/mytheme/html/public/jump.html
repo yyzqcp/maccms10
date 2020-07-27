@@ -1,0 +1,45 @@
+{include file="public/data"}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>系统提示......</title>
+    {include file="public/include"}
+    {include file="user/include" /}
+</head>
+<body style="background-color: #fff;">
+<div class="container">
+	<div class="row">
+		<div class="myui-msg__form text-center clearfix">
+			<div class="myui-panel clearfix">
+				<div class="myui-panel-box clearfix">		
+					<div class="myui-panel_bd">
+						<div class="myui-msg__head">
+							<p><i class="fa fa-warning"></i></p>
+							<h4>{$msg}</h4>
+						</div>
+						<div class="myui-msg__body">
+							页面<span class="text-red" id="wait"><?php echo($wait);?></span> 秒后自动 <a class="text-link" id="href" href="<?php echo($url);?>">跳转</a>，返回 <a class="text-link" href="{$maccms.path}">首页</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    // (function(){
+    //     var wait = document.getElementById('wait'),
+    //             href = document.getElementById('href').href;
+    //     var interval = setInterval(function(){
+    //         var time = --wait.innerHTML;
+    //         if(time <= 0) {
+    //             location.href = href;
+    //             clearInterval(interval);
+    //         };
+    //     }, 1000);
+    // })();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{include file="public/data"}
+<!doctype html>
+<html>
+<head>
+    {include file="seo/actor_type"}
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="container">
+	<div class="row">
+		{include file="index/actor"}<!-- 推荐 -->
+		
+		{if condition="$obj.childids eq '' "}
+		{maccms:foreach name=":explode(',',''.$mytheme['star']['list_area'].'')" id="vo" key="key"}
+		<div class="myui-layout-box col-md-2 col-xs-1">
+			<div class="myui-panel active myui-panel-bg clearfix">	
+				<div class="myui-panel-box clearfix">													
+					<div class="myui-panel_hd">
+						<div class="myui-panel__head clearfix">
+							<h3 class="title">
+								{$vo}明星
+							</h3>
+							<a class="more text-muted" href="{:mac_url('actor/show',['area'=>$vo,'id'=>$obj.type_id])}">更多 <i class="fa fa-angle-right"></i></a>
+						</div>																		
+					</div>
+					<div class="myui-panel_bd clearfix">
+						<ul class="myui-vodlist clearfix">
+							{maccms:actor num="10" area="'.$vo.'" order="desc" by="time"}				
+							<li class="col-md-{$mytheme.star.list_col} col-sm-{$mytheme.col.sm} col-xs-{$mytheme.col.xs}{if condition="$key gt $mytheme.star.list_xs"} hidden-xs{/if}{if condition="$key gt $mytheme.star.list_sm"} hidden-sm{/if}">
+								{include file="block/actor_box"}
+							</li>
+							{/maccms:actor}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		{/maccms:foreach}
+		{else}
+		{maccms:type ids="current" order="asc" by="sort" id="vo1" key="key1"}
+		<div class="myui-layout-box col-md-2 col-xs-1">
+			<div class="myui-panel active myui-panel-bg clearfix">	
+				<div class="myui-panel-box clearfix">													
+					<div class="myui-panel_hd">
+						<div class="myui-panel__head clearfix">
+							<h3 class="title">
+								{$vo1.type_name}
+							</h3>
+							<a class="more text-muted" href="{:mac_url_type($vo1,[],'show')}">更多 <i class="fa fa-angle-right"></i></a>
+						</div>																		
+					</div>
+					<div class="myui-panel_bd clearfix">							
+						<ul class="myui-vodlist clearfix">
+							{maccms:actor num="10" type="'.$vo1['type_id'].'" order="desc" by="time"}				
+							<li class="col-md-{$mytheme.star.list_col} col-sm-{$mytheme.col.sm} col-xs-{$mytheme.col.xs}{if condition="$key gt $mytheme.star.list_xs"} hidden-xs{/if}{if condition="$key gt $mytheme.star.list_sm"} hidden-sm{/if}">
+								{include file="block/actor_box"}
+							</li>
+							{/maccms:actor}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		{/maccms:type}
+		{/if}
+	
+	</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

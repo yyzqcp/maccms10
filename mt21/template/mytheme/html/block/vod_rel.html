@@ -1,0 +1,20 @@
+{if $obj.art_rel_vod}
+<div class="myui-panel myui-panel-bg clearfix">
+	<div class="myui-panel-box clearfix">
+		<div class="myui-panel_hd">
+			<div class="myui-panel__head clearfix">
+				<h3 class="title">
+					相关影片
+				</h3>	
+			</div>																		
+		</div>
+		<div class="myui-panel_bd">
+			<ul class="myui-vodlist__media active col-pd clearfix">
+				{maccms:vod num="3" ids="'.$obj['art_rel_vod'].'" order="desc" by="time"}
+					{include file="block/vod_box_media"}
+				{/maccms:vod}
+			</ul>
+		</div>
+	</div>
+</div>
+{/if}

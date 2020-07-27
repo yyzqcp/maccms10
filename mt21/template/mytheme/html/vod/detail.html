@@ -1,0 +1,61 @@
+{include file="public/data"}
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="seo/vod_detail"}   
+	{include file="public/include"}
+</head>
+<body>
+	{include file="public/head"}
+	
+    <div class="container">
+        <div class="row">
+            <div class="{if $mytheme.detail.side}col-lg-wide-75 col-md-wide-7 {/if}col-xs-1 padding-0">	
+            	
+            	{include file="vod/detail_data"}<!-- 详细信息-->
+				
+				{include file="vod/desc"}<!-- 剧情简介-->
+
+				{include file="vod/play_list"}<!-- 播放地址-->
+
+				{include file="vod/down_list"}<!-- 下载地址-->
+
+				{include file="vod/like"}<!-- 猜你喜欢-->
+				
+				{include file="vod/look"}<!-- 大家在看-->
+				
+				{include file="vod/comment"}<!-- 评论-->
+
+			</div>
+			{if $mytheme.detail.side}
+			<div class="col-lg-wide-25 col-md-wide-3 col-xs-1 myui-sidebar {$mytheme.detail.side_self}">
+					
+				{include file="vod/hot"}<!-- 热播-->
+				
+				{include file="block/art_rel"}<!-- 相关资讯-->
+				
+				{include file="block/art_hot"}<!-- 资讯-->
+
+				{if $mytheme.detail.ad && $mytheme.detail.ad8}
+				<div class="myui-panel myui-panel-bg clearfix">
+					<div class="myui-panel-box clearfix">
+						<div class="myui-panel_bd">
+							<div class="col-xs-1">
+								{$mytheme.detail.ad8}
+							</div>
+						</div>
+					</div>
+				</div>
+				{/if}
+
+			</div>
+			{/if}
+        </div>
+    </div>
+
+	<span class="mac_hits hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" data-type="hits"></span>
+	<span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+	    
+	{include file="public/foot"}
+</body>
+</html>

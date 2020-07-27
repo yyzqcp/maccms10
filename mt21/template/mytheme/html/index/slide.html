@@ -1,0 +1,76 @@
+{if $mytheme.home_slide.is}
+<div class="myui-panel radius-0 padding-0 clearfix">
+	<div id="home_slide" class="carousel slide clearfix" data-ride="carousel">
+		<div class="carousel-inner">
+			{maccms:vod num="'.$mytheme['home_slide']['num'].'" type="'.$mytheme['home_slide']['type'].'" order="desc" by="'.$mytheme['home_slide']['by'].'" level="'.$mytheme['home_slide']['level'].'"}
+			<div class="item text-center {if condition="$key-1 eq 0"}active{/if}" style="background-color: {$vo[''.$mytheme.home_slide.bg1.'']};">
+				<a title="{$vo.vod_name}"{if $mytheme.site.link} href="{:mac_url_vod_play($vo,['sid'=>1,'nid'=>1])}"{else} href="{:mac_url_vod_detail($vo)}"{/if}>
+					<img class="img-responsive hidden-xs" src="{$vo.vod_pic_slide|mac_url_img}"/>
+					<img class="img-responsive visible-xs" src="{$vo.vod_pic_thumb|mac_url_img}"/>
+				</a>
+			</div>
+			{/maccms:vod}
+		</div> 
+		{if condition="$mytheme.home_slide.switch eq 'text'"}
+		<ul class="carousel-indicators carousel-indicators-text hidden-md hidden-sm hidden-xs">
+			{maccms:vod num="'.$mytheme['home_slide']['num'].'" type="'.$mytheme['home_slide']['type'].'" order="desc" by="'.$mytheme['home_slide']['by'].'" level="'.$mytheme['home_slide']['level'].'"}
+			<li data-target="#home_slide" data-slide-to="{$key-1}" class="{if condition="$key-1 eq 0"}active{/if}">
+				<h4 class="title">{$vo.vod_name|mac_substring=10}</h4>
+				<p class="text margin-0">
+					{if condition="$mytheme.home_slide.data eq remarks"}
+					{$vo.vod_remarks}
+					{elseif condition="$mytheme.home_slide.data eq actor"}
+					{$vo.vod_actor|mac_default='内详'}
+					{elseif condition="$mytheme.home_slide.data eq time"}
+					{$vo.vod_time|date='Y-m-d',###}更新
+					{elseif condition="$mytheme.home_slide.data eq hits"}
+					<i class="fa fa-youtube-play"></i> {$vo.vod_hits}次点播
+					{elseif condition="$mytheme.home_slide.data eq data"}
+					{$vo.vod_year}/{$vo.vod_area|mac_default='未知'}/{$vo.type.type_name}
+					{/if}
+				</p>
+			</li>
+			{/maccms:vod}
+		</ul>
+		{elseif condition="$mytheme.home_slide.switch eq 'thumb'"}
+		<ul class="carousel-indicators carousel-indicators-thumb hidden-md hidden-sm hidden-xs">
+			{maccms:vod num="'.$mytheme['home_slide']['num'].'" type="'.$mytheme['home_slide']['type'].'" order="desc" by="'.$mytheme['home_slide']['by'].'" level="'.$mytheme['home_slide']['level'].'"}
+			<li data-target="#home_slide" data-slide-to="{$key-1}" class="{if condition="$key-1 eq 0"}active{/if}" style="width: {$mytheme.home_slide.pic_wide}px; height: {$mytheme.home_slide.pic_high}px;">
+				<img class="img-responsive" src="{$vo.vod_pic_thumb|mac_url_img}"/>
+			</li>
+			{/maccms:vod}
+		</ul>
+		{elseif condition="$mytheme.home_slide.switch eq 'dots'"}
+		<ul class="carousel-indicators carousel-indicators-dots hidden-sm hidden-xs">
+			{maccms:vod num="'.$mytheme['home_slide']['num'].'" type="'.$mytheme['home_slide']['type'].'" order="desc" by="'.$mytheme['home_slide']['by'].'" level="'.$mytheme['home_slide']['level'].'"}
+			<li data-target="#home_slide" data-home_slide-to="{$key-1}" class="{if condition="$key-1 eq 0"}active{/if}"></li>
+			{/maccms:vod}
+		</ul>
+		{/if}
+		 
+		{if $mytheme.home_slide.btn}
+		<a class="carousel-control left" href="#home_slide" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+		<a class="carousel-control right" href="#home_slide" data-slide="next"><i class="fa fa-angle-right"></i></a>
+		{/if}
+	</div>
+</div>
+{if $mytheme.home_slide.tag}
+<div class="container">
+	<div class="row">
+		<div class="myui-panel myui-panel-bg clearfix">
+			<div class="myui-panel-box clearfix">
+        		<ul class="clearfix">					
+					{maccms:type ids="'.$mytheme['home_slide']['tag_id'].'" order="asc" by="sort" id="vo1" key="key1"}
+					<li class="col-md-{$mytheme.home_slide.tag_col} col-xs-{$mytheme.home_slide.tag_col_xs}">
+						<a class="btn btn-block btn-default" href="{:mac_url_type($vo1)}">
+							<span class="spot"></span>{$vo1.type_name}<span class="visible-inline-lg">（共{$vo1.type_id|mac_data_count=all}部）</span>
+						</a>
+					</li>
+					{/maccms:type}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{/if}
+{/if}

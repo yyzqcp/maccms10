@@ -1,0 +1,18 @@
+<div class="myui-panel myui-panel-bg clearfix">
+	<div class="myui-panel-box clearfix">
+		<div class="myui-panel_hd">
+			<div class="myui-panel__head clearfix">
+				<h3 class="title">
+					正在热播
+				</h3>	
+			</div>																		
+		</div>
+		<div class="myui-panel_bd">
+			<ul class="myui-vodlist__media active col-pd clearfix">
+				{maccms:vod num="10" type="current" order="desc" by="hits"}
+					{include file="block/vod_box_media2"}
+				{/maccms:vod}
+			</ul>
+		</div>
+	</div>
+</div>
